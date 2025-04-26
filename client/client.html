@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ESP32 Robot Navigation</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>ESP32 Robot Navigation Control</h1>
+
+      <div class="grid-container">
+        <div class="map-section">
+          <h2>Navigation Grid</h2>
+          <div class="grid-size-control">
+            <label for="grid-size">Grid Size:</label>
+            <select id="grid-size">
+              <option value="5">5x5</option>
+              <option value="8">8x8</option>
+              <option value="10" selected>10x10</option>
+              <option value="15">15x15</option>
+              <option value="20">20x20</option>
+            </select>
+            <button id="apply-grid-size" class="apply-btn">Apply</button>
+          </div>
+          <div class="legend">
+            <div class="legend-item">
+              <div class="legend-color robot"></div>
+              <span>Robot Start</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color goal"></div>
+              <span>Goal</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color obstacle"></div>
+              <span>Obstacle</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color path"></div>
+              <span>Path</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-color current-robot"></div>
+              <span>Current Position</span>
+            </div>
+          </div>
+          <div class="selection-mode">
+            <label>Selection Mode:</label>
+            <div class="mode-buttons">
+              <button id="mode-start" class="mode-btn active">Start</button>
+              <button id="mode-goal" class="mode-btn">Goal</button>
+              <button id="mode-obstacle" class="mode-btn">Obstacles</button>
+              <button id="mode-erase" class="mode-btn">Erase</button>
+            </div>
+          </div>
+          <div class="map-grid" id="map-grid"></div>
+          <div class="control-buttons">
+            <button id="start-navigation" class="action-btn">
+              Start Navigation
+            </button>
+            <button id="stop-navigation" class="action-btn stop">Stop</button>
+            <button id="clear-map" class="action-btn clear">Clear Map</button>
+          </div>
+        </div>
+
+        <div class="info-section">
+          <div class="status-panel">
+            <h2>Robot Status</h2>
+            <div class="current-status">
+              <div>
+                <strong>Position:</strong>
+                <span id="position-display">(0,0)</span>
+              </div>
+              <div>
+                <strong>Direction:</strong>
+                <span id="direction-display">NORTH</span>
+              </div>
+              <div>
+                <strong>Status:</strong> <span id="status-display">Idle</span>
+              </div>
+            </div>
+          </div>
+          <div class="log-panel">
+            <h2>Event Log</h2>
+            <div class="log-container">
+              <div id="log-output"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
